@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="jquery-1.11.3.js"></script>
+</head>
+<body>
+	<p>用户名：<input id="username" /></p>
+	<p>密码：<input type="text" id="password"></p>
+	<p>确认密码：<input id="confirmPwd"></p>
+	<p><button id="register">注册</button></p>
+	<div></div>
+</body>
+<script>
+	$('#register').click(function(){
+		var usn = $('#username').val();
+		var pwd = $('#password').val();
+		var Cpwd = $('#confirmPwd').val();
+		
+		if(!usn || !pwd){
+			alert("用户名和密码不能为空")
+			return;
+		};
+		if(pwd!==Cpwd){
+			alert('输入密码不一致')
+		}
+		$.ajax({
+			method: "POST",
+			url:user.php,
+			data:{
+				username:usn,
+				password:pwd
+			},
+			success:function(data){
+			$('div).html(data)
+				var data = json.parse();
+				if(data.isOk){
+					alert('注册成功')
+				}else{
+					alert('注册失败：'+data.msg)
+				}
+			}
+		})
+	
+	
+	})
+
+</script>
+</html>
